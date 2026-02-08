@@ -47,34 +47,42 @@
       position: absolute;
       transition: left 0.2s ease, top 0.2s ease;
     }
+
+    /* Yay message overlay */
+    #message {
+      position: fixed;
+      inset: 0;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      font-size: 42px;
+      background: rgba(255, 230, 238, 0.96);
+      z-index: 10;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
 
   <div class="box">
-    <h1>Will you be my Valentine? ❤️</h1>
+    <h1>Will you be my Valentine, Paromia? ❤️</h1>
     <button id="yes" onclick="yesClick()">Yes</button>
     <button id="no" ontouchstart="moveNo()" onmouseover="moveNo()">No</button>
   </div>
 
+  <div id="message">Yay!!! 😘</div>
+
   <script>
     function yesClick() {
-      // Confetti burst
+      // Confetti
       confetti({
-        particleCount: 200,
-        spread: 70,
+        particleCount: 250,
+        spread: 80,
         origin: { y: 0.6 }
       });
 
-      // Properly encoded WhatsApp message
-      const msg = encodeURIComponent(
-        "She said YES!! 💖🎉 Best Valentine ever!"
-      );
-
-      // Redirect after delay
-      setTimeout(() => {
-        window.location.href = "https://wa.me/?text=" + msg;
-      }, 1500);
+      // Show Yay message
+      document.getElementById("message").style.display = "flex";
     }
 
     function moveNo() {
